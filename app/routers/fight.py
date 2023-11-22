@@ -6,7 +6,8 @@ This module defines the FastAPI router for simulating fights.
 from typing import Dict, Tuple
 from typing import List
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import RedirectResponse
 from result import Err, Ok, Result
 
 from models import Player
@@ -165,6 +166,37 @@ def narrate_story(movements: MovementsTyping) -> List[str]:
         player, opponent = opponent, player
 
     return story
+
+
+# endregion
+
+# region Routers
+
+
+# Define a root route to redirect to '/fight'
+@router.get('/')
+def root():
+    """Redirects to the '/fight' route."""
+    return RedirectResponse(url='fight')
+
+
+@router.post('/fight')
+def simulate_fight(movements: MovementsTyping):
+    """Simulates a fight and returns the narration.
+
+    Args:
+        movements (MovementsTyping): Movements of the players.
+
+    Returns:
+        Dict[str, Union[List[str], str]]: A dictionary containing the story
+            as a list of events and consolidated text.
+    """
+    validate_result = validate_structure(movements)
+    if validate_result.is_err():
+        raise HTTPException(status_code=400, detail=f'Error: {validate_result.err()}')
+
+    story = narrate_story(movements)
+    return {'story': story, 'story_text': '\n'.join(story)}
 
 
 # endregion
