@@ -61,6 +61,11 @@ def validate_play(play: PlayerTyping) -> Result:
         return Err('Las claves "movimientos" y "golpes" son requeridas en'
                    ' una jugada.')
 
+    # Validate the length of 'movimientos' and 'golpes'
+    if len(play['movimientos']) != len(play['golpes']):
+        return Err('Para cada jugador, la cantidad de movimientos y de golpes'
+                   ' debe ser la misma.')
+
     # Validate the length of 'movimientos'
     for movement in play['movimientos']:
         if not isinstance(movement, str) or len(movement) > 5:
