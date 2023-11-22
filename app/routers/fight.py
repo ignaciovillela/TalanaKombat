@@ -173,11 +173,29 @@ def narrate_story(movements: MovementsTyping) -> List[str]:
 # region Routers
 
 
-# Define a root route to redirect to '/fight'
+# Define a root route to provide information
 @router.get('/')
 def root():
-    """Redirects to the '/fight' route."""
-    return RedirectResponse(url='fight')
+    """
+    Provides information about the API.
+
+    Returns:
+        dict: A dictionary with information about the API usage.
+    """
+    return {'info': 'Bienvenido a la API de Kombat! Para iniciar una pelea,'
+                    ' envía una solicitud POST a la URL /kombat/fight.'}
+
+
+@router.get('/fight')
+def simulate_fight_info():
+    """
+    Provides information about the API.
+
+    Returns:
+        dict: A dictionary with information about the API usage.
+    """
+    return {'info': 'Genial, has llegado a la URL! Para iniciar una pelea,'
+                    ' envía una solicitud POST.'}
 
 
 @router.post('/fight')
