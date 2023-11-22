@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  talana-kombat-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    container_name: talana_kombat_container
