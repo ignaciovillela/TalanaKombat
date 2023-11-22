@@ -98,7 +98,8 @@ class BaseMovement:
                 text_list.append('y')
             text_list.append(action)
 
-        if self.combination and opponent.energy <= opponent.__class__.energy / 2:
+        if (self.combination
+                and opponent.energy <= opponent.__class__.energy / 2):
             text_list.append(opponent.fight_name)
 
         return ' '.join(text_list)
@@ -108,7 +109,8 @@ class SpecialMovementMixin:
     """Mixin class for special movements.
 
     Methods:
-        _get_pre_movements(self, movements): Overrides the method to return an empty string.
+        _get_pre_movements(self, movements): Overrides the method to return an
+            empty string.
     """
 
     def _get_pre_movements(self, movements: str) -> str:

@@ -17,3 +17,13 @@ MOVEMENTS_DATA = {
     'player1': PLAYER_1_DATA,
     'player2': PLAYER_2_DATA,
 }
+
+EXPECTED_STORY = [
+    'Tonyn avanza y da una patada',
+    'Arnaldor conecta un Remuyuken',
+    'Tonyn usa un Taladoken',
+    'Arnaldor baja',
+    'Tonyn baja',
+    'Arnaldor conecta un Remuyuken al pobre Tonyn',
+    'Arnaldor Gana la pelea y aún le queda 2 de energía',
+]

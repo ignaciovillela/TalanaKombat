@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
-from tests.app.routers.fight.utils import MOVEMENTS_DATA
+from tests.utils.utils import MOVEMENTS_DATA
 
 client = TestClient(app)
 
